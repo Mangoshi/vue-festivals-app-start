@@ -19,13 +19,19 @@
 					<router-link class="nav-link" :to="{name: 'festivals_index'}">Festivals</router-link>
 				</div>
 			</div>
+			<button v-if="$store.state.loggedIn" @click="logout()" class="btn btn-sm btn-outline-danger">Log Out</button>
 		</div>
 	</nav>
 </template>
 
 <script>
 export default {
-	name: "MyNavBar"
+	name: "MyNavBar",
+	methods:{
+		logout(){
+			this.$store.dispatch('logout')
+		}
+	}
 };
 </script>
 

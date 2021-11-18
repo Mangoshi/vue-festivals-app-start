@@ -29,11 +29,12 @@ export default {
 	},
 	methods: {
 		getData(){
+			let token = localStorage.getItem('token')
 			axios
 				.get(`http://festivals-api.herokuapp.com/api/festivals/${this.$route.params.id}`,
 				{
 					headers: {
-						"Authorization" : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGZlc3RpdmFscy5pZSIsIl9pZCI6IjYxODAzYTMxNGM2OTczOGEyMGQxOTMyMyIsImlhdCI6MTYzNjYzMDY2MX0.X2n591lJ5rzV-gYkSW1PSaQroCD0E5QCeQtU53lr0GE'
+						"Authorization" : `Bearer ${token}`
 					}
 				})
 				.then(response => {

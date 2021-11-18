@@ -20,6 +20,16 @@ export default {
 	components: {
 		MyNavBar,
 		MyFooter
+	},
+	created(){
+		if (localStorage.getItem('token')){
+			this.$store.commit('SET_LOGGED_IN_STATUS', true)
+		} else {
+			this.$store.commit('SET_LOGGED_IN_STATUS', false)
+		}
+	},
+	methods:{
+		
 	}
 };
 </script>
