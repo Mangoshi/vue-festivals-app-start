@@ -22,6 +22,17 @@ export default new Router({
 			component: () => import("./pages/festivals/Index.vue")
 		},
 		{
+			path: "/festivals/create",
+			name: "festivals_create",
+			component: () => import("./pages/festivals/Create.vue")
+		},
+		{
+			path: "/festivals/:id/edit",
+			name: "festivals_edit",
+			component: () => import("./pages/festivals/Edit.vue")
+		},
+		// To prevent bugs, place routes with params like this at the end
+		{
 			path: "/festivals/:id",
 			name: "festivals_show",
 			component: () => import("./pages/festivals/Show.vue")

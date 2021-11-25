@@ -1,17 +1,38 @@
 <template>
 	<b-col>
-		<h2>Welcome to the Festivals Index page</h2>
+		<h2>Festivals</h2>
 
+		<b-button :to="{ name : 'festivals_create' }" variant="primary" class="mb-2 float-right">Add</b-button>
+
+		<b-table striped hover responsive headVariant="dark" :items="festivals" :fields="headings">
+
+			<template #cell(title)="data">
+				<router-link :to="{ name: 'festivals_show', params:{ id: data.item._id }}">{{ data.value }}</router-link>
+			</template>
+
+			<template #cell(start_date)="data">
+				{{new Date(data.value).toLocaleString()}}
+			</template>
+
+			<template #cell(end_date)="data">
+				{{new Date(data.value).toLocaleString()}}
+			</template>
+
+		</b-table>
+<!--
 		<p
 		v-for="festival in festivals"
 		:key="festival._id" >
-		<router-link :to="{ name: 'festivals_show', params:{ id: festival._id }}"> {{ festival.title }} </router-link>
+		
 		</p>
+-->
+
 	</b-col>
+
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '@/config'
 
 export default {
 	name: "FestivalsIndex",
@@ -20,6 +41,25 @@ export default {
 	},
 	data(){
 		return{
+			headings: [
+				{
+					key: 'title',
+					sortable: true
+				},
+					'description',
+				{
+					key: 'city',
+					sortable: true
+				},
+				{
+					key: 'start_date',
+					sortable: true
+				},
+				{
+					key: 'end_date',
+					sortable: true
+				},
+			],
 			festivals: []
 		}
 	},
@@ -29,7 +69,7 @@ export default {
 	methods: {
 		getData(){
 			axios
-				.get("http://festivals-api.herokuapp.com/api/festivals")
+				.get("festivals")
 				.then(response => {
 						console.log(response.data)
 						this.festivals = response.data
@@ -40,3 +80,6 @@ export default {
 	}
 };
 </script>
+<style>
+
+</style>

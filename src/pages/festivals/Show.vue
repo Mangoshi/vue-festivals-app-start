@@ -1,6 +1,7 @@
 <template>
 	<b-col>
 		<h2>Show Festivals page</h2>
+		<b-button :to="{name: 'festivals_edit', params: {id: $route.params}}" variant="warning" class="float-right">Edit</b-button>
 		<hr>
 		<p>
 			{{festival.title}}
@@ -8,11 +9,12 @@
 		<p>
 			{{festival.city}}
 		</p>
+		
 	</b-col>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '@/config'
 
 export default {
 	name: "FestivalsShow",
@@ -31,7 +33,7 @@ export default {
 		getData(){
 			let token = localStorage.getItem('token')
 			axios
-				.get(`http://festivals-api.herokuapp.com/api/festivals/${this.$route.params.id}`,
+				.get(`festivals/${this.$route.params.id}`,
 				{
 					headers: {
 						"Authorization" : `Bearer ${token}`
