@@ -27,6 +27,9 @@
 <script>
 export default {
 	name: "MyNavBar",
+	props:{
+		msg: String
+	},
 	methods:{
 		logout(){
 			this.$store.dispatch('logout')
